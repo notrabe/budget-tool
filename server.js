@@ -8,6 +8,8 @@ connectDB()
 
 const app = express()
 
+app.use(express.json)
+
 const transactionsRouter = require('./routes/transactions-router')
 
 app.use('/api/transactions', transactionsRouter)
