@@ -8,7 +8,7 @@ connectDB()
 
 const app = express()
 
-app.use(express.json)
+app.use(express.json())
 
 const transactionsRouter = require('./routes/transactions-router')
 
