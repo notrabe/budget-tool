@@ -46,5 +46,26 @@ exports.getTransactions = async (req, res, next) => {
   }
 
 exports.deleteTransaction = async (req, res, next) => {
-    res.send('DELETE transactions')
+    try {
+      const transaction = await Transaction.findById(req.params.id)
+      if(!transaction){
+        return res.status(404).json({
+          success: false,
+          error: 'No transaction found.'
+        })
+      }
+
+      await transaction.remove()
+
+      res.status(200).json({
+        success: true,
+        data: transaction
+      })
+      
+    } catch (error) {
+        return res.status(500).json({
+          success: false,
+          error: 'Server Error'
+        });
+    }
 }
