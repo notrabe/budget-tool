@@ -1,4 +1,4 @@
 node_modules
 
 #ignore env variables
-config.env
+.env
