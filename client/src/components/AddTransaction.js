@@ -1,5 +1,4 @@
 import React, {useState, useContext} from 'react'
-import shortid from 'shortid'
 
 import {GlobalContext} from '../context/GlobalState'
 
@@ -24,7 +23,6 @@ export const AddTransaction = () => {
         e.preventDefault()
 
         const newTransaction = {
-            id: shortid.generate(),
             text,
             amount: +amount
         }
