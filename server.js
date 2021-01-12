@@ -1,4 +1,5 @@
 require('dotenv').config()
+const path  = require('path')
 const express = require('express')
 const colors = require('colors')
 const morgan = require('morgan')
@@ -13,6 +14,14 @@ app.use(express.json())
 const transactionsRouter = require('./routes/transactions-router')
 
 app.use('/api/transactions', transactionsRouter)
+
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'))
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
 
 const PORT = process.env.PORT || 5000
 

@@ -1,6 +1,6 @@
-import React, {createContext, useReducer} from 'react';
-import AppReducer from './AppReducer';
-import axios from 'axios';
+import React, {createContext, useReducer} from 'react'
+import AppReducer from './AppReducer'
+import axios from 'axios'
 
 // Initial state
 const initialState = {
@@ -10,42 +10,42 @@ const initialState = {
 }
 
 // Create context
-export const GlobalContext = createContext(initialState);
+export const GlobalContext = createContext(initialState)
 
 // Provider component
 export const GlobalProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(AppReducer, initialState);
+  const [state, dispatch] = useReducer(AppReducer, initialState)
 
   // Actions
   async function getTransactions() {
     try {
-      const res = await axios.get('/api/transactions');
+      const res = await axios.get('/api/transactions')
 
       dispatch({
         type: 'GET_TRANSACTIONS',
         payload: res.data.data
-      });
+      })
     } catch (err) {
       dispatch({
         type: 'TRANSACTION_ERROR',
         payload: err.response.data.error
-      });
+      })
     }
   }
 
   async function deleteTransaction(id) {
     try {
-      await axios.delete(`/api/transactions/${id}`);
+      await axios.delete(`/api/transactions/${id}`)
 
       dispatch({
         type: 'DELETE_TRANSACTION',
         payload: id
-      });
+      })
     } catch (err) {
       dispatch({
         type: 'TRANSACTION_ERROR',
         payload: err.response.data.error
-      });
+      })
     }
   }
 
@@ -57,17 +57,17 @@ export const GlobalProvider = ({ children }) => {
     }
 
     try {
-      const res = await axios.post('/api/transactions', transaction, config);
+      const res = await axios.post('/api/transactions', transaction, config)
 
       dispatch({
         type: 'ADD_TRANSACTION',
         payload: res.data.data
-      });
+      })
     } catch (err) {
       dispatch({
         type: 'TRANSACTION_ERROR',
         payload: err.response.data.error
-      });
+      })
     }
   }
 
@@ -80,5 +80,5 @@ export const GlobalProvider = ({ children }) => {
     addTransaction
   }}>
     {children}
-  </GlobalContext.Provider>);
+  </GlobalContext.Provider>)
 }

@@ -18,7 +18,7 @@ function App() {
         <AddTransaction/>
       </div>
     </GlobalProvider>
-  );
+  )
 }
 
-export default App;
+export default App
