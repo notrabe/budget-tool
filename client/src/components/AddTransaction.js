@@ -22,10 +22,15 @@ export const AddTransaction = () => {
     const onSubmit = (e) => {
         e.preventDefault()
 
+        
         const newTransaction = {
             text,
             amount: +amount
         }
+        
+        setText('')
+        setAmount(0)
+        
 
         addTransaction(newTransaction)
     }
@@ -36,8 +41,8 @@ export const AddTransaction = () => {
             <form onSubmit={onSubmit}>
 
                 <div className="form-control">
-                    <label htmlFor="text">Text</label>
-                    <input type="text" value = {text} placeholder="Enter text..." onChange = {textChange}/>
+                    <label htmlFor="text">Transaction title</label>
+                    <input name = 'title' type="text" value = {text} placeholder="Enter text..." onChange = {textChange}/>
                 </div>
 
                 <div className="form-control">
@@ -45,7 +50,7 @@ export const AddTransaction = () => {
                         >Amount <br />
                         (negative - expense, positive - income)</label
                     >
-                    <input type="number" value = {amount} placeholder="Enter amount..." onChange = {amountChange}/>
+                    <input name = 'number' type="number" value = {amount} placeholder="Enter amount..." onChange = {amountChange}/>
                 </div>
 
                 <button className="btn">Add transaction</button>
