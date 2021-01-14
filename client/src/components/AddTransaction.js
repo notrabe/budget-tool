@@ -11,12 +11,10 @@ export const AddTransaction = () => {
 
     const textChange = (e) => {
         setText(e.target.value)
-        e.preventDefault()
     }
 
     const amountChange = (e) => {
         setAmount(e.target.value)
-        e.preventDefault()
     }
 
     const onSubmit = (e) => {
